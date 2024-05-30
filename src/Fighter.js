@@ -1,3 +1,6 @@
+const Shield = require("./Shield");
+const Weapon = require("./Weapon")
+
 const MAX_LIFE = 100;
 
 class Fighter {
@@ -12,15 +15,15 @@ class Fighter {
 
 
     getDamage() {
-        if(this.weapon !== null) {
-            return this.strength + this.weapon.damage;
+        if(this.weapon && this.weapon instanceof Weapon) {
+            return this.getRandomInt(this.strength) + this.weapon.damage;
             } else {
-                return this.strength;
+                return this.getRandomInt(this.strength);
             }
         }
 
     getDefense() {
-        if(this.shield !== null) {
+        if(this.shield && this.shield instanceof Shield) {
         return this.dexterity + this.shield.protection;
         } else {
             return this.dexterity;
